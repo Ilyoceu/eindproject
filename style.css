@@ -1,0 +1,172 @@
+body {
+    background-color: bisque;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h2 {
+    padding: 10px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+}
+
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav div, .topnav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  margin: 0;
+}
+
+.topnav .right {
+  margin-left: auto;
+  border-left: 1px solid #f2f2f2;
+  padding-left: 5px;
+}
+
+.topnav .left {
+  margin-right: auto;
+  border-right: 1px solid #f2f2f2;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: aquamarine;
+  color: white;
+}
+
+/* merged into one .filter rule */
+.filter {
+    border: solid black 5px;
+    border-radius: 5px;
+    margin: 20px;
+    background-color: #f2f2f2;
+    width: 20%;
+    flex-shrink: 0;
+    padding-top: 10px;
+}
+
+.color-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+}
+
+.color-box {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    display: inline-block;
+}
+
+.colors {
+  border-top: rgba(0, 0, 0, 0.5) solid 5px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.products {
+  background-color: white;
+  border: solid black 5px;
+  border-radius: 5px;
+  margin: 20px;
+  flex: 1;
+}
+
+/* added flex: 1 so it stretches to fill the body */
+.main-content {
+    display: flex;
+    flex: 1;
+}
+
+.index-content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.items {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0px;
+  width: 100%;
+}
+.product {
+  background: white;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;        /* keeps image corners rounded */
+  cursor: pointer;
+  transition: border-color 0.2s;
+  margin: 5px;
+}
+
+.product:hover {
+  border-color: #aaa;
+}
+
+.product img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;      /* image fit the box */
+  object-position: center;
+  background-color: #f5f5f5; /* fills the empty space around image */
+  display: block;
+  padding: 10px;  
+  box-sizing: border-box;
+}
+.product-info {
+  padding: 12px 14px 14px;
+}
+
+.product-info h3 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.product-info p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: #666;
+}
+
+.search_bar {
+  font-family: 'Courier New', Courier, monospace;
+  border: 2px solid transparent;
+  width: 30em;
+  height: 2.5em;
+  padding-left: 0.8em;
+  outline: none;
+  overflow: hidden;
+  background-color: #F3F3F3;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.search_bar:hover,
+.search_bar:focus {
+  border: 2px solid #4A9DEC;
+  box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
+  background-color: white;
+}
