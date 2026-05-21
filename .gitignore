@@ -1,0 +1,5 @@
+﻿venv/
+webshop.db
+__pycache__/
+*.pyc
+.vscode/

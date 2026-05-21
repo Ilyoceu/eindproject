@@ -1,0 +1,68 @@
+{% extends "layout.html" %} {% block body %}
+<!--navigation bar-->
+<div class="topnav">
+  <div class="left">
+    <a class="active" href="/">Home</a>
+  </div>
+  <div class="right">
+    <a id="account" href="/login">account</a>
+    <a id="products" href="/shoplist">Products</a>
+  </div>
+</div>
+<!--filter box-->
+<div class="main-content">
+<div class="filter">
+  <h2 style="text-align: center;">filter</h2>
+  <div>
+    <h3 style="text-align: center;">category:</h3>
+    <div class="category-option">
+      <input type="checkbox" />
+      <span>clothing</span>
+  </div>
+  <div class="category-option">
+      <input type="checkbox" />
+      <span>cds</span>
+  </div>
+  <div class="colors">
+    <h3 style="text-align: center;">color:</h3>
+    <div class="color-option">
+      <input type="checkbox" />
+      <span class="color-box" style="background-color: red"></span>
+      <span>Red</span>
+    </div>
+    <div class="color-option">
+      <input type="checkbox" />
+      <span class="color-box" style="background-color: blue"></span>
+      <span>Blue</span>
+    </div>
+    <div class="color-option">
+      <input type="checkbox" />
+      <span class="color-box" style="background-color: green"></span>
+      <span>green</span>
+    </div>
+    <div class="color-option">
+      <input type="checkbox" />
+      <span class="color-box" style="background-color: black"></span>
+      <span>black</span>
+    </div>
+    <div class="color-option">
+      <input type="checkbox" />
+      <span class="color-box" style="background-color: white"></span>
+      <span>white</span>
+    </div>
+    <div class="color-option">
+      <input type="checkbox" />
+      <span class="color-box" style="background-color: yellow"></span>
+      <span>yellow</span>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="products">
+
+</div>
+</div>
+{% endblock %}
+<!-- design webshop:
+    https://wireframe.cc/vh13NV -->
