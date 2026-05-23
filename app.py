@@ -40,5 +40,14 @@ def shoplist():
 def search():
     query = request.args.get('q')  # gets the search term
     return render_template('search.html', query=query)
+
+@app.route('/product/<int:product_id>')
+def product_detail(product_id):
+    conn = get_db_connection()
+    product = conn.execute('SELECT * FROM products WHERE id = ?', (product_id,)).fetchone()
+    conn.close()
+    if product is None:
+        return "Product not found", 404
+    return render_template('product.html', product=product)
 if __name__ == '__main__':
     app.run(debug=True)

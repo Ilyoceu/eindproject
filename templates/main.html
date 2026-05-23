@@ -13,18 +13,15 @@
 <div class="index-content">
   <form action="/search" method="GET">
     <div>
-      <input class="search_bar" placeholder="text">
+      <input class="search_bar" name="q" placeholder="text">
     </div>
   </form>
   <div class="recommendations">
     <h2 style="text-align: center"><b>recommendations</b></h2>
-    <div class="product-list">
-      <!-- add product items here -->
-    </div>
   </div>
   <div class="items">
     {% for product in products %}
-    <div class="product">
+    <div class="product" data-href="/product/{{ product.id }}">
       <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}"/>
       <div class="product-info">
         <h3>{{ product.name }}</h3>
