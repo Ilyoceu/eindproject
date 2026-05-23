@@ -5,14 +5,14 @@
 </div>
   <div class="right">
     <a id="account" href="/login">account</a>
-    <a id="products" href="/shoplist">Products</a>
+    <a id="favorites" href="/shoplist">favorites</a>
   </div>
 </div>
 <div class="shoplist">
-  <h1>Products</h1>
+  <h1>favorites</h1>
   <ul>
-    {% for product in products %}
-    <li>{{ product.name }} - ${{ product.price }}</li>
+    {% for favorite in favorites %}
+    <li>{{ favorite.name }} - ${{ favorite.price }}</li>
     {% endfor %}
   </ul>
 

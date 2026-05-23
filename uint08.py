@@ -20,6 +20,13 @@ CREATE TABLE IF NOT EXISTS shoplist (
 """)
 
 cursor.execute("""
+CREATE TABLE IF NOT EXISTS favorites (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    item TEXT NOT NULL,
+    price REAL NOT NULL)"""
+)
+
+cursor.execute("""
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY,
     name TEXT,
