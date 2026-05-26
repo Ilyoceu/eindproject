@@ -1,16 +1,16 @@
 body {
-    background-color: bisque;
-    margin: 0px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  background-color: bisque;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h2 {
-    padding: 10px;
-    font-size: 18px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 500;
+  padding: 10px;
+  font-size: 18px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
 }
 
 .topnav {
@@ -53,28 +53,28 @@ h2 {
 
 /* merged into one .filter rule */
 .filter {
-    border: solid black 5px;
-    border-radius: 5px;
-    margin: 20px;
-    background-color: #f2f2f2;
-    width: 20%;
-    flex-shrink: 0;
-    padding-top: 10px;
+  border: solid black 5px;
+  border-radius: 5px;
+  margin: 20px;
+  background-color: #f2f2f2;
+  width: 20%;
+  flex-shrink: 0;
+  padding-top: 10px;
 }
 
 .color-option {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
 }
 
 .color-box {
-    width: 16px;
-    height: 16px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  display: inline-block;
 }
 
 .colors {
@@ -93,8 +93,8 @@ h2 {
 
 /* added flex: 1 so it stretches to fill the body */
 .main-content {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 .index-content {
@@ -169,4 +169,37 @@ h2 {
   border: 2px solid #4A9DEC;
   box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
   background-color: white;
+}
+
+.product-detail {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 30px;
+  padding: 20px;
+}
+
+.product-image {
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+  object-position: center;
+  background-color: #f5f5f5;
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  flex-shrink: 0; /* prevents image from squishing */
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+  background-color: #F3F3F3;
 }

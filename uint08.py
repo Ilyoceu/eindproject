@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY,
     name TEXT,
     price REAL,
-    image_url TEXT
+    image_url TEXT,
+    description TEXT,
+    category TEXT 
 )
 """)
 
