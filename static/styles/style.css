@@ -9,7 +9,7 @@ body {
 h2 {
   padding: 10px;
   font-size: 18px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 500;
 }
 
@@ -21,7 +21,8 @@ h2 {
   overflow: hidden;
 }
 
-.topnav div, .topnav a {
+.topnav div,
+.topnav a {
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
@@ -49,6 +50,29 @@ h2 {
 .topnav a.active {
   background-color: aquamarine;
   color: white;
+}
+
+.topnav img.nav-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.avatar-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.avatar-preview img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
 }
 
 /* merged into one .filter rule */
@@ -115,7 +139,7 @@ h2 {
   background: white;
   border: 0.5px solid #e0e0e0;
   border-radius: 12px;
-  overflow: hidden;        /* keeps image corners rounded */
+  overflow: hidden; /* keeps image corners rounded */
   cursor: pointer;
   transition: border-color 0.2s;
   margin: 5px;
@@ -128,11 +152,11 @@ h2 {
 .product img {
   width: 100%;
   height: 200px;
-  object-fit: contain;      /* image fit the box */
+  object-fit: contain; /* image fit the box */
   object-position: center;
   background-color: #f5f5f5; /* fills the empty space around image */
   display: block;
-  padding: 10px;  
+  padding: 10px;
   box-sizing: border-box;
 }
 .product-info {
@@ -152,21 +176,21 @@ h2 {
 }
 
 .search_bar {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   border: 2px solid transparent;
   width: 30em;
   height: 2.5em;
   padding-left: 0.8em;
   outline: none;
   overflow: hidden;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   border-radius: 10px;
   transition: all 0.5s;
 }
 
 .search_bar:hover,
 .search_bar:focus {
-  border: 2px solid #4A9DEC;
+  border: 2px solid #4a9dec;
   box-shadow: 0px 0px 0px 7px rgb(74, 157, 236, 20%);
   background-color: white;
 }
@@ -201,5 +225,66 @@ h2 {
   margin-top: 20px;
   font-size: 16px;
   color: #333;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  padding: 20px;
+}
+
+.form-header h3 {
+  margin: 0 0 10px;
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 320px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+  margin-bottom: 10px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.botton {
+  display: flex;
+  justify-content: center;
+}
+
+.botton .submit {
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.signup {
+  text-align: center;
+  font-size: 14px;
+}
+
+.shoplist {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
 }

@@ -1,14 +1,5 @@
 {% extends "layout.html" %}
 {% block body %}
-<div class="topnav">
-  <div class="left">
-    <a class="active" href="/">Home</a>
-  </div>
-  <div class="right">
-    <a id="account" href="/login">account</a>
-    <a id="products" href="/shoplist">Products</a>
-  </div>
-</div>
 <div class="product-detail">
   <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}" class="product-image"/>
   <div class="product-info">

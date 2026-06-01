@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="form-container">
+    <div class="input-container">
+        <div class="form-header">
+            <h3>My Profile</h3>
+        </div>
+        <div class="avatar-preview">
+            <img src="{{ url_for('static', filename=user.avatar) }}" alt="{{ user.username }}'s avatar">
+        </div>
+        {% if error %}
+            <div class="error-message" style="color: red; margin-bottom: 10px;">{{ error }}</div>
+        {% endif %}
+        {% if success %}
+            <div class="success-message" style="color: green; margin-bottom: 10px;">{{ success }}</div>
+        {% endif %}
+        <form method="POST" action="/profile" enctype="multipart/form-data">
+            <div>
+                <label for="avatar">Upload a new profile picture</label>
+                <input type="file" name="avatar" accept="image/png, image/jpeg, image/gif">
+            </div>
+            <div class="botton">
+                <button class="submit" type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

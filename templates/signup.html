@@ -1,0 +1,33 @@
+{% extends "layout.html" %} {% block body %}
+  <div class="form-container">
+        <div class="input-container">
+            <div class="form-header">
+                <h3>Sign Up</h3>
+            </div>
+            <form method="POST" action="/signup" enctype="multipart/form-data">
+                {% if error %}
+                    <div class="error-message" style="color: red; margin-bottom: 10px;">{{ error }}</div>
+                {% endif %}
+                <div>
+                    <input type="text" name="username" placeholder="Username" required> 
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Create Password" required>
+                </div>
+                <div>
+                    <input type="password" name="password_confirm" placeholder="Re-Enter password" required>     
+                </div>
+                <div>
+                    <label for="avatar">Profile picture (optional)</label>
+                    <input type="file" name="avatar" accept="image/png, image/jpeg, image/gif">
+                </div>
+                <div class="botton">
+                    <button class="submit" type="submit">SIGN UP</button> 
+                </div>  
+                <div class="signup">
+                     Already Have An Account<a href="/login"> log In</a>  
+                </div>
+            </form>
+        </div>
+  </div>
+{% endblock %}

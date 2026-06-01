@@ -1,19 +1,8 @@
 {% extends "layout.html" %} {% block body %}
-<!--navigation bar-->
-<div class="topnav">
-  <div class="left">
-    <a class="active" href="/">Home</a>
-  </div>
-  <div class="right">
-    <a id="account" href="/login">account</a>
-    <a id="products" href="/shoplist">Products</a>
-  </div>
-</div>
-<!--main content-->
 <div class="index-content">
   <form action="/search" method="GET">
     <div>
-      <input class="search_bar" name="q" placeholder="text">
+      <input class="search_bar" name="q" placeholder="search for an item...">
     </div>
   </form>
   <div class="recommendations">

@@ -8,6 +8,28 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
 </head>
 <body>
+    <div class="topnav">
+        <div class="left">
+            <a class="active" href="{{ url_for('index') }}">Home</a>
+        </div>
+        <div class="right">
+            {% if logged_in %}
+                <a id="profile" href="{{ url_for('profile') }}">
+                    {% if current_avatar %}
+                        <img class="nav-avatar" src="{{ url_for('static', filename=current_avatar) }}" alt="{{ current_username }}'s avatar">
+                    {% endif %}
+                    {{ current_username }}
+                </a>
+                <a id="products" href="{{ url_for('shoplist') }}">Products</a>
+                <a id="logout" href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a id="login" href="{{ url_for('login') }}">Login</a>
+                <a id="signup" href="{{ url_for('signup') }}">Sign Up</a>
+                <a id="products" href="{{ url_for('shoplist') }}">Products</a>
+            {% endif %}
+        </div>
+    </div>
+
     {% block body %}
         
     {% endblock %}
