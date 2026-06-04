@@ -9,15 +9,23 @@
     <h2 style="text-align: center"><b>recommendations</b></h2>
   </div>
   <div class="items">
-    {% for product in products %}
-    <div class="product" data-href="/product/{{ product.id }}">
-      <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}"/>
-      <div class="product-info">
-        <h3>{{ product.name }}</h3>
-        <p>€{{ product.price }}</p>
-      </div>
-    </div>
-    {% endfor %}
+{% for product in products %}
+<div class="product" data-href="/product/{{ product.id }}">
+  <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}"/>
+
+  {% set is_fav = product.id in session.get('favorites', []) %}
+  <form method="post" action="{{ url_for('toggle_favorite', product_id=product.id) }}" style="display:inline;">
+    <button type="submit" class="fav-button" onclick="event.stopPropagation();">
+      <img src="{{ url_for('static', filename='images/icons/' ~ ('heart.png' if is_fav else 'empty_heart.png')) }}" alt="heart">
+    </button>
+  </form>
+
+  <div class="product-info">
+    <h3>{{ product.name }}</h3>
+    <p>€{{ product.price }}</p>
+  </div>
+</div>
+{% endfor %}
   </div>
 </div>
 {% endblock %}

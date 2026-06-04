@@ -10,7 +10,7 @@
 <body>
     <div class="topnav">
         <div class="left">
-            <a class="active" href="{{ url_for('index') }}">Home</a>
+            <a class="active" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/icons/home.png')}}"></a>
         </div>
         <div class="right">
             {% if logged_in %}
@@ -20,12 +20,11 @@
                     {% endif %}
                     {{ current_username }}
                 </a>
-                <a id="products" href="{{ url_for('shoplist') }}">Products</a>
-                <a id="logout" href="{{ url_for('logout') }}">Logout</a>
+                <a id="favorites" href="{{ url_for('favorites') }}">Favorites</a>
+                <a id="logout" href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='images/icons/logout.png')}}"></a>
             {% else %}
                 <a id="login" href="{{ url_for('login') }}">Login</a>
                 <a id="signup" href="{{ url_for('signup') }}">Sign Up</a>
-                <a id="products" href="{{ url_for('shoplist') }}">Products</a>
             {% endif %}
         </div>
     </div>

@@ -2,12 +2,16 @@ import os
 import sqlite3
 import uuid
 from flask import Flask, render_template, request, session, url_for, redirect
+# encryption for passwords
 import bcrypt
+
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 DATABASE = 'webshop.db'
 UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'images', 'avatars')
+
+# only allow files of certain types 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 app.secret_key = 'secret_key'
@@ -30,6 +34,7 @@ def init_db():
     ''')
     cursor.execute("PRAGMA table_info(users)")
     columns = [row[1] for row in cursor.fetchall()]
+    # select the default avatar if there is no avatar
     if 'avatar' not in columns:
         cursor.execute("ALTER TABLE users ADD COLUMN avatar TEXT NOT NULL DEFAULT 'images/default_avatar.svg'")
         conn.commit()
@@ -42,9 +47,11 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+# check if the file meets the conditions
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# save the avatar
 def save_avatar(file, username):
     extension = file.filename.rsplit('.', 1)[1].lower()
     safe_name = secure_filename(f"{username}_{uuid.uuid4().hex}.{extension}")
@@ -66,6 +73,57 @@ def get_products():
     products = conn.execute('SELECT id, name, price, image_url FROM products').fetchall()
     conn.close()
     return products
+
+
+def search_products(query):
+    query = (query or '').strip()
+    if not query:
+        return []
+
+    conn = get_db_connection()
+    rows = conn.execute('SELECT * FROM products').fetchall()
+    conn.close()
+
+    query_lower = query.lower()
+    terms = [term for term in query_lower.split() if term]
+    results = []
+
+    for row in rows:
+        name = (row['name'] or '').lower()
+        description = (row['description'] or '').lower()
+        score = 0
+
+        if query_lower in name:
+            score += 10
+        if query_lower in description:
+            score += 7
+
+        for term in terms:
+            if term in name:
+                score += 2
+            if term in description:
+                score += 1
+
+        if score > 0:
+            results.append((score, row))
+
+    results.sort(key=lambda item: (-item[0], item[1]['name']))
+    return [product for score, product in results]
+
+
+# get favorite products from session
+def get_favorite_products():
+    fav_ids = session.get('favorites', [])
+    if not fav_ids:
+        return []
+    conn = get_db_connection()
+    placeholders = ','.join('?' for _ in fav_ids)
+    query = f'SELECT * FROM products WHERE id IN ({placeholders})'
+    rows = conn.execute(query, tuple(fav_ids)).fetchall()
+    conn.close()
+    # preserve order of fav_ids
+    rows_by_id = {row['id']: row for row in rows}
+    return [rows_by_id[i] for i in fav_ids if i in rows_by_id]
 
 # main page
 @app.route('/')
@@ -93,6 +151,7 @@ def login():
         user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone() # ? prevents SQL injection
         conn.close()
         
+        # encrypt the password for cybersecurity
         if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
             session['user_id'] = user['id']
             session['username'] = user['username']
@@ -169,26 +228,54 @@ def profile():
     conn.close()
     return render_template('profile.html', user=user, error=error, success=success)
 
+# shoplist page
 @app.route('/shoplist', methods=['GET', 'POST'])
 def shoplist():
-    products = get_products()
-    return render_template('shoplist.html', products=products)
+    # shoplist template removed — redirect to home listing
+    return redirect(url_for('index'))
 
 # search page
 @app.route('/search', methods=['GET', 'POST'])
 def search():
-    query = request.args.get('q')  # gets the search term
-    return render_template('search.html', query=query)
+    query = request.args.get('q', '').strip()
+    products = search_products(query)
+    return render_template('search.html', query=query, products=products)
 
 # product page
 @app.route('/product/<int:product_id>')
 def product_detail(product_id):
     conn = get_db_connection()
+    # get the product from the database
     product = conn.execute('SELECT * FROM products WHERE id = ?', (product_id,)).fetchone()
     conn.close()
     if product is None:
         return "Product not found", 404
     return render_template('product.html', product=product)
+
+
+# Toggle favorite (add/remove) for a product
+@app.route('/favorites/toggle/<int:product_id>', methods=['POST'])
+def toggle_favorite(product_id):
+    favs = session.get('favorites', [])
+    # ensure ints
+    favs = [int(i) for i in favs]
+    if product_id in favs:
+        favs.remove(product_id)
+    else:
+        favs.append(product_id)
+    session['favorites'] = favs
+    session.modified = True
+    # redirect back to where the request came from
+    return redirect(request.referrer or url_for('index'))
+
+
+# Favorites list page
+@app.route('/favorites')
+def favorites():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    products = get_favorite_products()
+    return render_template('favorites.html', products=products)
 
 if __name__ == '__main__':
     init_db()  # Initialize database

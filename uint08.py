@@ -40,10 +40,10 @@ CREATE TABLE IF NOT EXISTS products (
 cursor.execute("DELETE FROM products")
 cursor.execute("""
     INSERT OR IGNORE INTO products (id, name, price, image_url, description, category) VALUES
-    (1, 'Megadeth - Megadeth', 19.99, 'images/product1.jpeg', NULL, 'cd'),
+    (1, 'Megadeth - Megadeth', 19.99, 'images/product1.jpeg', album my megadeth published on 23 january, 'cd'),
     (2, 'Dookie - Green Day', 19.99, 'images/product2.jpeg', NULL, 'cd'),
-    (3, 'Nirvana shirt', 19.99, 'images/product3.jpeg', NULL, 't-shirt'),
-    (4, 'Tool shirt', 19.99, 'images/product4.jpeg', NULL, 't-shirt'),
+    (3, 'Nirvana shirt', 29.99, 'images/product3.jpeg', NULL, 't-shirt'),
+    (4, 'Tool shirt', 29.99, 'images/product4.jpeg', NULL, 't-shirt'),
     (5, 'American idiot - Green Day', 19.99, 'images/product5.jpeg', NULL, 'cd'),
     (6, 'Magma - Gojira', 19.99, 'images/product6.jpeg', NULL, 'cd'),
     (7, 'Octavarium - Dream Theater', 19.99, 'images/product7.jpeg', NULL, 'cd'),
@@ -57,7 +57,9 @@ cursor.execute("""
     (15, 'Moving pictures - Rush', 19.99, 'images/product15.jpeg', NULL, 'cd'),
     (16, 'Holy diver - Dio', 19.99, 'images/product16.jpeg', NULL, 'cd'),
     (17, 'Song for the deaf - Queens Of The Stone Age', 19.99, 'images/product17.jpeg', NULL, 'cd'),
-    (18, 'From mars to sirius - Gojira', 19.99, 'images/product18.jpeg', NULL, 'cd')
+    (18, 'From mars to sirius - Gojira', 19.99, 'images/product18.jpeg', NULL, 'cd'),
+    (19, 'Gojira shirt', 29.99, 'images/product19.jpeg', NULL, 't-shirt'),
+    (20, 'Linkin park shirt', 29.99, 'images/product20.jpeg', NULL, 't-shirt')
 """)
 
 conn.commit()

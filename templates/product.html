@@ -5,6 +5,12 @@
   <div class="product-info">
     <h1>{{ product.name }}</h1>
     <p>Price: €{{ product.price }}</p>
+    {% set is_fav = product.id in session.get('favorites', []) %}
+    <form method="post" action="{{ url_for('toggle_favorite', product_id=product.id) }}">
+      <button type="submit" class="favorite-action-button" aria-pressed="{{ 'true' if is_fav else 'false' }}">
+        {% if is_fav %}Remove from favorites{% else %}Add to favorites{% endif %}
+      </button>
+    </form>
     <div class="description">
     <p>Description: {{ product.description }}</p>
     </div>

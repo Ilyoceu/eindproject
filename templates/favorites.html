@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="favorites-page">
+  <h2>Your Favorites</h2>
+  {% if products %}
+    <div class="items">
+      {% for product in products %}
+        <div class="product">
+          <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}"/>
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p>€{{ product.price }}</p>
+          </div>
+          <form method="post" action="{{ url_for('toggle_favorite', product_id=product.id) }}">
+            <button type="submit" class="favorite-remove-button">Remove</button>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>You have no favorite products yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
