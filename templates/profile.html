@@ -27,6 +27,14 @@
                 <button class="submit" type="submit">Upload</button>
             </div>
         </form>
+        <form method="POST" action="{{ url_for('delete_account') }}" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');" style="margin-top:16px;">
+            <div class="botton">
+                <button class="submit" type="submit" style="background:#c62828;">Delete Account</button>
+            </div>
+        </form>
+        <div style="margin-top:20px;">
+            <a href="{{ url_for('change_password') }}">Change password</a>
+        </div>
     </div>
 </div>
 {% endblock %}

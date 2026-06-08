@@ -23,7 +23,11 @@
             {% set is_fav = product.id in session.get('favorites', []) %}
             <form method="post" action="{{ url_for('toggle_favorite', product_id=product.id) }}" style="display:inline;">
               <button type="submit" class="fav-button" onclick="event.stopPropagation();">
-                <img src="{{ url_for('static', filename='images/icons/' ~ ('heart.png' if is_fav else 'empty_heart.png')) }}" alt="heart">
+                {% if is_fav %}
+                  <i class="fa-solid fa-heart" style="color: #ff0000;"></i>
+                {% else %}
+                  <i class="fa-regular fa-heart"></i>
+                {% endif %}
               </button>
             </form>
             <div class="product-info">

@@ -22,6 +22,7 @@
                     {{ current_username }}
                 </a>
                 <a id="favorites" href="{{ url_for('favorites') }}">Favorites</a>
+                <a id="cart" href="{{ url_for('cart') }}">Cart</a>
                 <a id="logout" href="{{ url_for('logout') }}"><img src="{{ url_for('static', filename='images/icons/logout.png')}}"></a>
             {% else %}
                 <a id="login" href="{{ url_for('login') }}">Login</a>

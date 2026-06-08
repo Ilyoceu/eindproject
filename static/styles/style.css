@@ -336,3 +336,143 @@ h2 {
   justify-content: center; /* Centers horizontally */
   align-items: center;     /* Centers vertically */
 }
+
+/* Cart and checkout styling */
+.cart-container,
+.index-content .cart-container {
+  max-width: 900px;
+  margin: 24px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.cart-item img { width: 72px; height: 72px; object-fit: cover; border-radius: 6px }
+
+.cart-item .product-info h4 { margin: 0; font-size: 16px }
+.cart-item .product-info p { margin: 4px 0 0; color: #666 }
+
+.submit {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.submit:hover { background-color: #155fa0 }
+
+.submit[disabled],
+.submit:disabled {
+  background-color: #bdbdbd;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .items { grid-template-columns: repeat(2, 1fr); }
+  .cart-item img { width: 56px; height: 56px }
+}
+
+/* Favorites remove button */
+.favorite-remove-button {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s, transform 0.08s;
+  font-weight: 600;
+}
+.favorite-remove-button:hover {
+  background: #ffecec;
+  border-color: #f5a7a7;
+  transform: translateY(-2px);
+}
+
+/* Cart checkbox styling */
+.cart-checkbox {
+  width: 22px;
+  height: 22px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid #bdbdbd;
+  border-radius: 6px;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: white;
+}
+.cart-checkbox:checked {
+  background: linear-gradient(180deg,#1976d2,#155fa0);
+  border-color: #155fa0;
+}
+.cart-checkbox:checked::after {
+  content: '\2713';
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  left: 4px;
+  top: 1px;
+}
+
+/* smaller on mobile */
+@media (max-width: 600px) {
+  .cart-checkbox { width: 18px; height: 18px }
+  .cart-checkbox:checked::after { left: 3px; top: 0px; font-size: 12px }
+}
+
+/* Favorites page: center remove button at bottom of each card */
+.favorites-page .product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 380px;
+}
+
+.favorites-page .product .product-info {
+  flex: 1 1 auto;
+}
+
+.favorites-page .favorite-remove-button {
+  align-self: center;
+  margin: 12px 0 16px 0;
+}
+
+/* Ensure the form containing the remove button is centered inside the card */
+.favorites-page .product > form {
+  align-self: center; /* centers the form horizontally in the column layout */
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin: 12px 0 16px 0;
+}
+
+/* Ensure product-info text wraps and doesn't overflow in small cards */
+.cart-item .product-info h4,
+.product-info h3,
+.product-info h4 {
+  word-wrap: break-word;
+  white-space: normal;
+}
+

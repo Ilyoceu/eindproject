@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="index-content">
+  <div class="cart-container">
+    <h2>Checkout (not implemented)</h2>
+    {% if products %}
+      <div class="cart-items">
+        {% for product in products %}
+          <div class="cart-item">
+            <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}">
+            <div class="product-info">
+              <h4 style="margin:0;">{{ product.name }}</h4>
+              <p style="margin:0;">€{{ product.price }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div style="margin-top:16px;">
+        <button class="submit" disabled>Pay (not implemented)</button>
+      </div>
+    {% else %}
+      <p>No items selected.</p>
+    {% endif %}
+    <div style="margin-top:12px;"><a href="{{ url_for('cart') }}">Back to cart</a></div>
+  </div>
+</div>
+{% endblock %}

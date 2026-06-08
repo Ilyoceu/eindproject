@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="index-content">
+  <div class="cart-container">
+    <h2>Select items from your Favorites</h2>
+    {% if products %}
+      <form method="POST" action="{{ url_for('cart_checkout') }}">
+        <div class="cart-items">
+          {% for product in products %}
+            <div class="cart-item">
+              <input class="cart-checkbox" type="checkbox" name="selected" value="{{ product.id }}" id="prod-{{ product.id }}">
+              <label for="prod-{{ product.id }}" style="display:flex;align-items:center;gap:12px;cursor:pointer;width:100%;">
+                <img src="{{ url_for('static', filename=product.image_url) }}" alt="{{ product.name }}">
+                <div class="product-info">
+                  <h4 style="margin:0;">{{ product.name }}</h4>
+                  <p style="margin:0;">€{{ product.price }}</p>
+                </div>
+              </label>
+            </div>
+          {% endfor %}
+        </div>
+        <div style="margin-top:16px;">
+          <button type="submit" class="submit">Proceed to Pay</button>
+        </div>
+      </form>
+    {% else %}
+      <p>You have no favorites to add. Go to <a href="{{ url_for('favorites') }}">Favorites</a> to add some.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
