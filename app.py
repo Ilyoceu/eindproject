@@ -25,7 +25,7 @@ app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024
 # Initialize database
 def init_db():
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    
+
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('''
@@ -212,11 +212,11 @@ def signup():
 
 
 def send_email(to_address, subject, body):
-    smtp_host = os.environ.get('EMAIL_HOST')
-    smtp_port = int(os.environ.get('EMAIL_PORT', '587'))
-    smtp_user = os.environ.get('EMAIL_USERNAME')
-    smtp_pass = os.environ.get('EMAIL_PASSWORD')
-    from_addr = os.environ.get('EMAIL_FROM') or smtp_user
+    smtp_host = 'smtp.gmail.com'
+    smtp_port = 587
+    smtp_user = 'webshopmail.ic@gmail.com'
+    smtp_pass = 'tfuz wzis twxc dwpr'
+    from_addr = 'webshopmail.ic@gmail.com'
 
     if not smtp_host or not from_addr:
         raise RuntimeError('Email server not configured. Set EMAIL_HOST and EMAIL_FROM (and optionally EMAIL_PORT, EMAIL_USERNAME, EMAIL_PASSWORD)')
