@@ -159,6 +159,7 @@ h2 {
   width: 28px;
   height: 28px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  color: black;
   background: white;
   border-radius: 50%;
   display: flex;
@@ -170,36 +171,12 @@ h2 {
   cursor: pointer;
   z-index: 2;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.fav-button img {
-  width: 14px;
-  height: 14px;
-  display: block;
+  transition: ease all 0.4s;
 }
 
 .fav-button:hover {
   background: #fff;
-  transform: translateY(-1px);
-}
-
-.favorite-remove-button {
-  display: inline-flex;
-  width: auto;
-  min-width: 100px;
-  padding: 10px 16px;
-  margin: 0 12px 12px;
-  border: 1px solid #333;
-  border-radius: 10px;
-  background-color: #f8f8f8;
-  color: #333;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
-}
-
-.favorite-remove-button:hover {
-  background-color: #e0e0e0;
+  color: red; 
   transform: translateY(-1px);
 }
 
