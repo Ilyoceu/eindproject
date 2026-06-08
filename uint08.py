@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("webshop.db")
+conn = sqlite3.connect(os.path.join(os.path.dirname(os.path.abspath(__file__)), "webshop.db"))
 cursor = conn.cursor()
 
 cursor.execute("""

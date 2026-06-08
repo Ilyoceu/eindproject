@@ -11,7 +11,7 @@ import bcrypt
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-DATABASE = 'webshop.db'
+DATABASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'webshop.db')
 UPLOAD_FOLDER = os.path.join(app.root_path, 'static', 'images', 'avatars')
 
 # only allow files of certain types 
