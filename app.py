@@ -39,7 +39,7 @@ def init_db():
     ''')
     cursor.execute("PRAGMA table_info(users)")
     columns = [row[1] for row in cursor.fetchall()]
-    # ensure avatar and email columns exist
+    #check if avatar and email columns exist
     if 'avatar' not in columns:
         cursor.execute("ALTER TABLE users ADD COLUMN avatar TEXT NOT NULL DEFAULT 'images/default_avatar.svg'")
     if 'email' not in columns:
@@ -81,7 +81,7 @@ def get_products():
     conn.close()
     return products
 
-
+# search bar code 
 def search_products(query):
     query = (query or '').strip()
     if not query:
@@ -155,11 +155,11 @@ def login():
             return render_template('login.html', error='Username and password required')
         
         conn = get_db_connection()
-        # allow login by username or email
+        # allow login by username/email
         user = conn.execute('SELECT * FROM users WHERE username = ? OR email = ?', (username, username)).fetchone()
         conn.close()
         
-        # encrypt the password for cybersecurity
+        # encrypt the password for good cybersecurity
         if user and bcrypt.checkpw(password.encode('utf-8'), user['password']):
             session['user_id'] = user['id']
             session['username'] = user['username']
@@ -195,7 +195,7 @@ def signup():
 
         try:
             conn = get_db_connection()
-            # check for existing username or email
+            # check for existing username / email
             existing = conn.execute('SELECT id FROM users WHERE username = ? OR email = ?', (username, email)).fetchone()
             if existing:
                 conn.close()
@@ -210,7 +210,7 @@ def signup():
 
     return render_template('signup.html')
 
-
+# email code DOESN'T WORK ON PYTHONANYWHERE
 def send_email(to_address, subject, body):
     smtp_host = 'smtp.gmail.com'
     smtp_port = 587
@@ -227,7 +227,7 @@ def send_email(to_address, subject, body):
     msg['To'] = to_address
     msg.set_content(body)
 
-    # Try SSL if port 465, otherwise try STARTTLS
+    # ports
     if smtp_port == 465:
         server = smtplib.SMTP_SSL(smtp_host, smtp_port)
     else:
@@ -244,7 +244,7 @@ def send_email(to_address, subject, body):
         except Exception:
             pass
 
-
+# forgot password page
 @app.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
@@ -276,7 +276,7 @@ def forgot_password():
 
     return render_template('forgot_password.html')
 
-
+# delete the account if wanted
 @app.route('/delete-account', methods=['POST'])
 def delete_account():
     if 'user_id' not in session:
@@ -288,7 +288,7 @@ def delete_account():
     session.clear()
     return redirect(url_for('index'))
 
-
+# change password page
 @app.route('/profile/change-password', methods=['GET', 'POST'])
 def change_password():
     if 'user_id' not in session:
@@ -328,6 +328,7 @@ def change_password():
     conn.close()
     return render_template('change_password.html', user=user, success='Password changed successfully')
 
+# profile page
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     if 'user_id' not in session:
@@ -385,7 +386,7 @@ def product_detail(product_id):
     return render_template('product.html', product=product)
 
 
-# Toggle favorite (add/remove) for a product
+# Toggle favorite for a product
 @app.route('/favorites/toggle/<int:product_id>', methods=['POST'])
 def toggle_favorite(product_id):
     favs = session.get('favorites', [])
@@ -410,7 +411,7 @@ def favorites():
     return render_template('favorites.html', products=products)
 
 
-# Cart page: select favorite items to prepare for checkout
+# Cart page
 @app.route('/cart')
 def cart():
     if 'user_id' not in session:
@@ -419,7 +420,7 @@ def cart():
     products = get_favorite_products()
     return render_template('cart.html', products=products)
 
-
+# checkout page -> won't finish
 @app.route('/cart/checkout', methods=['POST'])
 def cart_checkout():
     if 'user_id' not in session:
